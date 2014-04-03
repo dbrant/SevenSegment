@@ -39,11 +39,15 @@
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.chkColonOn = new System.Windows.Forms.CheckBox();
+            this.chkColonShow = new System.Windows.Forms.CheckBox();
             this.sevenSegmentArray1 = new DmitryBrant.CustomControls.SevenSegmentArray();
             this.sevenSegment1 = new DmitryBrant.CustomControls.SevenSegment();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -123,7 +127,8 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(180, 148);
+            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.textBox2.Location = new System.Drawing.Point(180, 202);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(139, 20);
             this.textBox2.TabIndex = 9;
@@ -131,7 +136,8 @@
             // 
             // numericUpDown2
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(71, 148);
+            this.numericUpDown2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.numericUpDown2.Location = new System.Drawing.Point(71, 202);
             this.numericUpDown2.Maximum = new decimal(new int[] {
             32,
             0,
@@ -149,8 +155,9 @@
             // 
             // label3
             // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 151);
+            this.label3.Location = new System.Drawing.Point(12, 205);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 13);
             this.label3.TabIndex = 11;
@@ -158,18 +165,51 @@
             // 
             // label4
             // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(143, 151);
+            this.label4.Location = new System.Drawing.Point(143, 205);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(31, 13);
             this.label4.TabIndex = 12;
             this.label4.Text = "Text:";
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.chkColonOn);
+            this.groupBox2.Controls.Add(this.chkColonShow);
+            this.groupBox2.Location = new System.Drawing.Point(12, 119);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(112, 49);
+            this.groupBox2.TabIndex = 13;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Colon";
+            // 
+            // chkColonOn
+            // 
+            this.chkColonOn.AutoSize = true;
+            this.chkColonOn.Location = new System.Drawing.Point(63, 21);
+            this.chkColonOn.Name = "chkColonOn";
+            this.chkColonOn.Size = new System.Drawing.Size(40, 17);
+            this.chkColonOn.TabIndex = 3;
+            this.chkColonOn.Text = "On";
+            this.chkColonOn.UseVisualStyleBackColor = true;
+            this.chkColonOn.CheckedChanged += new System.EventHandler(this.chkDotShow_CheckedChanged);
+            // 
+            // chkColonShow
+            // 
+            this.chkColonShow.AutoSize = true;
+            this.chkColonShow.Location = new System.Drawing.Point(10, 21);
+            this.chkColonShow.Name = "chkColonShow";
+            this.chkColonShow.Size = new System.Drawing.Size(53, 17);
+            this.chkColonShow.TabIndex = 2;
+            this.chkColonShow.Text = "Show";
+            this.chkColonShow.UseVisualStyleBackColor = true;
+            this.chkColonShow.CheckedChanged += new System.EventHandler(this.chkDotShow_CheckedChanged);
+            // 
             // sevenSegmentArray1
             // 
-            this.sevenSegmentArray1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.sevenSegmentArray1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.sevenSegmentArray1.ArrayCount = 8;
             this.sevenSegmentArray1.ColorBackground = System.Drawing.Color.Black;
             this.sevenSegmentArray1.ColorDark = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -178,15 +218,17 @@
             this.sevenSegmentArray1.ElementPadding = new System.Windows.Forms.Padding(6, 4, 4, 4);
             this.sevenSegmentArray1.ElementWidth = 10;
             this.sevenSegmentArray1.ItalicFactor = -0.1F;
-            this.sevenSegmentArray1.Location = new System.Drawing.Point(12, 174);
+            this.sevenSegmentArray1.Location = new System.Drawing.Point(12, 228);
             this.sevenSegmentArray1.Name = "sevenSegmentArray1";
-            this.sevenSegmentArray1.Size = new System.Drawing.Size(340, 69);
+            this.sevenSegmentArray1.Size = new System.Drawing.Size(365, 69);
             this.sevenSegmentArray1.TabIndex = 8;
             this.sevenSegmentArray1.TabStop = false;
             this.sevenSegmentArray1.Value = "";
             // 
             // sevenSegment1
             // 
+            this.sevenSegment1.ColonOn = false;
+            this.sevenSegment1.ColonShow = false;
             this.sevenSegment1.ColorBackground = System.Drawing.Color.DimGray;
             this.sevenSegment1.ColorDark = System.Drawing.Color.DarkGray;
             this.sevenSegment1.ColorLight = System.Drawing.Color.Lime;
@@ -194,11 +236,11 @@
             this.sevenSegment1.DecimalOn = false;
             this.sevenSegment1.DecimalShow = true;
             this.sevenSegment1.ElementWidth = 10;
-            this.sevenSegment1.ItalicFactor = -0.1F;
+            this.sevenSegment1.ItalicFactor = -0.07F;
             this.sevenSegment1.Location = new System.Drawing.Point(146, 15);
             this.sevenSegment1.Name = "sevenSegment1";
             this.sevenSegment1.Padding = new System.Windows.Forms.Padding(12, 4, 8, 4);
-            this.sevenSegment1.Size = new System.Drawing.Size(70, 98);
+            this.sevenSegment1.Size = new System.Drawing.Size(109, 153);
             this.sevenSegment1.TabIndex = 7;
             this.sevenSegment1.TabStop = false;
             this.sevenSegment1.Value = null;
@@ -207,7 +249,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(364, 255);
+            this.ClientSize = new System.Drawing.Size(389, 309);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.numericUpDown2);
@@ -226,6 +269,8 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -246,6 +291,9 @@
         private System.Windows.Forms.NumericUpDown numericUpDown2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.CheckBox chkColonOn;
+        private System.Windows.Forms.CheckBox chkColonShow;
 
 
     }

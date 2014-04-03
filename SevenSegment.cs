@@ -6,9 +6,14 @@ using System.Drawing.Drawing2D;
 /*
  * Seven-segment LED control for .NET
  * 
- * Copyright 2009-2013 Dmitry Brant. All Rights Reserved.
+ * Copyright 2009-2014 Dmitry Brant. All Rights Reserved.
  * me@dmitrybrant.com
  * http://dmitrybrant.com
+ * 
+ * This component is free for personal use.
+ * If you would like to use it in a commercial application, please
+ * e-mail me at the address above.
+ * This software comes as-is, with no warranty.
  * 
  * Features:
  * - Customizable colors
@@ -17,22 +22,7 @@ using System.Drawing.Drawing2D;
  * - Customizable segment width and italics
  * 
  */
-/*
-    This software is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    (at your option) any later version.
-  
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-  
-    You should have received a copy of the GNU General Public License along
-    with this program; if not, write the Free Software Foundation, Inc., 51
-    Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
- */
 namespace DmitryBrant.CustomControls
 {
     public class SevenSegment : UserControl
@@ -271,6 +261,16 @@ namespace DmitryBrant.CustomControls
         /// </summary>
         public bool DecimalOn { get { return dotOn; } set { dotOn = value; Invalidate(); } }
 
+        private bool showColon = false, colonOn = false;
+        /// <summary>
+        /// Specifies if the colon LEDs are displayed.
+        /// </summary>
+        public bool ColonShow { get { return showColon; } set { showColon = value; Invalidate(); } }
+        /// <summary>
+        /// Specifies if the colon LEDs are active.
+        /// </summary>
+        public bool ColonOn { get { return colonOn; } set { colonOn = value; Invalidate(); } }
+
 
         private void SevenSegment_Paint(object sender, PaintEventArgs e)
         {
@@ -280,7 +280,15 @@ namespace DmitryBrant.CustomControls
             Brush brushDark = new SolidBrush(colorDark);
 
             // Define transformation for our container...
-            RectangleF srcRect = new RectangleF(0.0F, 0.0F, gridWidth, gridHeight);
+            RectangleF srcRect;
+
+            int colonWidth = gridWidth / 4;
+
+            if(showColon){
+                srcRect = new RectangleF(0.0F, 0.0F, gridWidth + colonWidth, gridHeight);
+            }else{
+                srcRect = new RectangleF(0.0F, 0.0F, gridWidth, gridHeight);
+            }
             RectangleF destRect = new RectangleF(Padding.Left, Padding.Top, this.Width - Padding.Left - Padding.Right, this.Height - Padding.Top - Padding.Bottom);
             
             // Begin graphics container that remaps coordinates for our convenience
@@ -304,6 +312,12 @@ namespace DmitryBrant.CustomControls
 
             if (showDot)
                 e.Graphics.FillEllipse(dotOn ? brushLight : brushDark, gridWidth - 1, gridHeight - elementWidth + 1, elementWidth, elementWidth);
+
+            if (showColon)
+            {
+                e.Graphics.FillEllipse(colonOn ? brushLight : brushDark, gridWidth + colonWidth - 4, gridHeight / 4 - elementWidth + 8, elementWidth, elementWidth);
+                e.Graphics.FillEllipse(colonOn ? brushLight : brushDark, gridWidth + colonWidth - 4, gridHeight * 3 / 4 - elementWidth + 4, elementWidth, elementWidth);
+            }
 
             e.Graphics.EndContainer(containerState);
         }
