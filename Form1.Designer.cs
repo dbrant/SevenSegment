@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
@@ -52,100 +53,70 @@
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(25, 15);
+            resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(44, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Symbol:";
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(75, 12);
-            this.textBox1.MaxLength = 1;
+            resources.ApplyResources(this.textBox1, "textBox1");
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(46, 20);
-            this.textBox1.TabIndex = 0;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(75, 38);
+            resources.ApplyResources(this.numericUpDown1, "numericUpDown1");
             this.numericUpDown1.Maximum = new decimal(new int[] {
             127,
             0,
             0,
             0});
             this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(46, 20);
-            this.numericUpDown1.TabIndex = 1;
             this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(25, 40);
+            resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 13);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Pattern:";
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.chkDotOn);
             this.groupBox1.Controls.Add(this.chkDotShow);
-            this.groupBox1.Location = new System.Drawing.Point(12, 64);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(112, 49);
-            this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Decimal point";
             // 
             // chkDotOn
             // 
-            this.chkDotOn.AutoSize = true;
-            this.chkDotOn.Location = new System.Drawing.Point(63, 21);
+            resources.ApplyResources(this.chkDotOn, "chkDotOn");
             this.chkDotOn.Name = "chkDotOn";
-            this.chkDotOn.Size = new System.Drawing.Size(40, 17);
-            this.chkDotOn.TabIndex = 3;
-            this.chkDotOn.Text = "On";
             this.chkDotOn.UseVisualStyleBackColor = true;
             this.chkDotOn.CheckedChanged += new System.EventHandler(this.chkDotShow_CheckedChanged);
             // 
             // chkDotShow
             // 
-            this.chkDotShow.AutoSize = true;
+            resources.ApplyResources(this.chkDotShow, "chkDotShow");
             this.chkDotShow.Checked = true;
             this.chkDotShow.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkDotShow.Location = new System.Drawing.Point(10, 21);
             this.chkDotShow.Name = "chkDotShow";
-            this.chkDotShow.Size = new System.Drawing.Size(53, 17);
-            this.chkDotShow.TabIndex = 2;
-            this.chkDotShow.Text = "Show";
             this.chkDotShow.UseVisualStyleBackColor = true;
             this.chkDotShow.CheckedChanged += new System.EventHandler(this.chkDotShow_CheckedChanged);
             // 
             // textBox2
             // 
-            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.textBox2.Location = new System.Drawing.Point(180, 202);
+            resources.ApplyResources(this.textBox2, "textBox2");
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(139, 20);
-            this.textBox2.TabIndex = 9;
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // numericUpDown2
             // 
-            this.numericUpDown2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.numericUpDown2.Location = new System.Drawing.Point(71, 202);
+            resources.ApplyResources(this.numericUpDown2, "numericUpDown2");
             this.numericUpDown2.Maximum = new decimal(new int[] {
             32,
             0,
             0,
             0});
             this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(52, 20);
-            this.numericUpDown2.TabIndex = 10;
             this.numericUpDown2.Value = new decimal(new int[] {
             8,
             0,
@@ -155,61 +126,39 @@
             // 
             // label3
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 205);
+            resources.ApplyResources(this.label3, "label3");
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 13);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "Elements:";
             // 
             // label4
             // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(143, 205);
+            resources.ApplyResources(this.label4, "label4");
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(31, 13);
-            this.label4.TabIndex = 12;
-            this.label4.Text = "Text:";
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.chkColonOn);
             this.groupBox2.Controls.Add(this.chkColonShow);
-            this.groupBox2.Location = new System.Drawing.Point(12, 119);
+            resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(112, 49);
-            this.groupBox2.TabIndex = 13;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Colon";
             // 
             // chkColonOn
             // 
-            this.chkColonOn.AutoSize = true;
-            this.chkColonOn.Location = new System.Drawing.Point(63, 21);
+            resources.ApplyResources(this.chkColonOn, "chkColonOn");
             this.chkColonOn.Name = "chkColonOn";
-            this.chkColonOn.Size = new System.Drawing.Size(40, 17);
-            this.chkColonOn.TabIndex = 3;
-            this.chkColonOn.Text = "On";
             this.chkColonOn.UseVisualStyleBackColor = true;
             this.chkColonOn.CheckedChanged += new System.EventHandler(this.chkDotShow_CheckedChanged);
             // 
             // chkColonShow
             // 
-            this.chkColonShow.AutoSize = true;
-            this.chkColonShow.Location = new System.Drawing.Point(10, 21);
+            resources.ApplyResources(this.chkColonShow, "chkColonShow");
             this.chkColonShow.Name = "chkColonShow";
-            this.chkColonShow.Size = new System.Drawing.Size(53, 17);
-            this.chkColonShow.TabIndex = 2;
-            this.chkColonShow.Text = "Show";
             this.chkColonShow.UseVisualStyleBackColor = true;
             this.chkColonShow.CheckedChanged += new System.EventHandler(this.chkDotShow_CheckedChanged);
             // 
             // sevenSegmentArray1
             // 
-            this.sevenSegmentArray1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            resources.ApplyResources(this.sevenSegmentArray1, "sevenSegmentArray1");
             this.sevenSegmentArray1.ArrayCount = 8;
             this.sevenSegmentArray1.ColorBackground = System.Drawing.Color.Black;
             this.sevenSegmentArray1.ColorDark = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -218,10 +167,7 @@
             this.sevenSegmentArray1.ElementPadding = new System.Windows.Forms.Padding(6, 4, 4, 4);
             this.sevenSegmentArray1.ElementWidth = 10;
             this.sevenSegmentArray1.ItalicFactor = -0.1F;
-            this.sevenSegmentArray1.Location = new System.Drawing.Point(12, 228);
             this.sevenSegmentArray1.Name = "sevenSegmentArray1";
-            this.sevenSegmentArray1.Size = new System.Drawing.Size(365, 69);
-            this.sevenSegmentArray1.TabIndex = 8;
             this.sevenSegmentArray1.TabStop = false;
             this.sevenSegmentArray1.Value = "";
             // 
@@ -237,19 +183,15 @@
             this.sevenSegment1.DecimalShow = true;
             this.sevenSegment1.ElementWidth = 10;
             this.sevenSegment1.ItalicFactor = -0.07F;
-            this.sevenSegment1.Location = new System.Drawing.Point(146, 15);
+            resources.ApplyResources(this.sevenSegment1, "sevenSegment1");
             this.sevenSegment1.Name = "sevenSegment1";
-            this.sevenSegment1.Padding = new System.Windows.Forms.Padding(12, 4, 8, 4);
-            this.sevenSegment1.Size = new System.Drawing.Size(109, 153);
-            this.sevenSegment1.TabIndex = 7;
             this.sevenSegment1.TabStop = false;
             this.sevenSegment1.Value = null;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(389, 309);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -264,7 +206,6 @@
             this.Controls.Add(this.label1);
             this.Name = "Form1";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
-            this.Text = "Seven-Segment Test";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

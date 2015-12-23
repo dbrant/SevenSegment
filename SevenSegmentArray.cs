@@ -6,7 +6,7 @@ using System.Drawing;
  * Seven-segment LED array control for .NET
  * (uses the original seven-segment LED control)
  * 
- * Copyright 2009-2014 Dmitry Brant. All Rights Reserved.
+ * Copyright 2009-2016 Dmitry Brant. All Rights Reserved.
  * me@dmitrybrant.com
  * http://dmitrybrant.com
  * 
@@ -27,24 +27,33 @@ namespace DmitryBrant.CustomControls
 {
     public class SevenSegmentArray : UserControl
     {
-        public SevenSegmentArray()
-        {
-            this.SuspendLayout();
-            this.Name = "SevenSegmentArray";
-            this.Size = new System.Drawing.Size(100, 25);
-            this.Resize += new System.EventHandler(this.SevenSegmentArray_Resize);
-            this.ResumeLayout(false);
-
-            this.TabStop = false;
-            elementPadding = new Padding(4, 4, 4, 4);
-            RecreateSegments(4);
-        }
-
-
         /// <summary>
         /// Array of segment controls that are currently children of this control.
         /// </summary>
         private SevenSegment[] segments = null;
+
+        private int elementWidth = 10;
+        private float italicFactor = 0.0F;
+        private Color colorBackground = Color.DarkGray;
+        private Color colorDark = Color.DimGray;
+        private Color colorLight = Color.Red;
+        private bool showDot = true;
+        private Padding elementPadding;
+
+        private string theValue = null;
+
+        public SevenSegmentArray()
+        {
+            SuspendLayout();
+            Name = "SevenSegmentArray";
+            Size = new System.Drawing.Size(100, 25);
+            Resize += new System.EventHandler(this.SevenSegmentArray_Resize);
+            ResumeLayout(false);
+
+            TabStop = false;
+            elementPadding = new Padding(4, 4, 4, 4);
+            RecreateSegments(4);
+        }
 
         /// <summary>
         /// Change the number of elements in our LED array. This destroys
@@ -111,15 +120,6 @@ namespace DmitryBrant.CustomControls
 
         protected override void OnPaintBackground(PaintEventArgs e) { e.Graphics.Clear(colorBackground); }
 
-
-        private int elementWidth = 10;
-        private float italicFactor = 0.0F;
-        private Color colorBackground = Color.DarkGray;
-        private Color colorDark = Color.DimGray;
-        private Color colorLight = Color.Red;
-        private bool showDot = true;
-        private Padding elementPadding;
-
         /// <summary>
         /// Background color of the LED array.
         /// </summary>
@@ -156,8 +156,6 @@ namespace DmitryBrant.CustomControls
         /// </summary>
         public Padding ElementPadding { get { return elementPadding; } set { elementPadding = value; UpdateSegments(); } }
 
-
-        private string theValue = null;
         /// <summary>
         /// The value to be displayed on the LED array. This can contain numbers,
         /// certain letters, and decimal points.

@@ -6,7 +6,7 @@ using System.Drawing.Drawing2D;
 /*
  * Seven-segment LED control for .NET
  * 
- * Copyright 2009-2014 Dmitry Brant. All Rights Reserved.
+ * Copyright 2009-2016 Dmitry Brant. All Rights Reserved.
  * me@dmitrybrant.com
  * http://dmitrybrant.com
  * 
@@ -27,6 +27,37 @@ namespace DmitryBrant.CustomControls
 {
     public class SevenSegment : UserControl
     {
+        private Point[][] segPoints;
+
+        private int gridHeight = 80;
+        private int gridWidth = 48;
+        private int elementWidth = 10;
+        private float italicFactor = 0.0F;
+        private Color colorBackground = Color.DarkGray;
+        private Color colorDark = Color.DimGray;
+        private Color colorLight = Color.Red;
+
+        private string theValue = null;
+        private bool showDot = true, dotOn = false;
+        private bool showColon = false, colonOn = false;
+        private int customPattern = 0;
+
+        /// <summary>
+        /// These are the various bit patterns that represent the characters
+        /// that can be displayed in the seven segments. Bits 0 through 6
+        /// correspond to each of the LEDs, from top to bottom!
+        /// </summary>
+        public enum ValuePattern
+        {
+            None = 0x0, Zero = 0x77, One = 0x24, Two = 0x5D, Three = 0x6D,
+            Four = 0x2E, Five = 0x6B, Six = 0x7B, Seven = 0x25,
+            Eight = 0x7F, Nine = 0x6F, A = 0x3F, B = 0x7A, C = 0x53,
+            D = 0x7C, E = 0x5B, F = 0x1B, G = 0x73, H = 0x3E,
+            J = 0x74, L = 0x52, N = 0x38, O = 0x78, P = 0x1F, Q = 0x2F, R = 0x18,
+            T = 0x5A, U = 0x76, Y = 0x6E,
+            Dash = 0x8, Equals = 0x48
+        }
+
         public SevenSegment()
         {
             this.SuspendLayout();
@@ -112,17 +143,6 @@ namespace DmitryBrant.CustomControls
             segPoints[p][5].X = halfWidth + 1; segPoints[p][5].Y = gridHeight - halfWidth;
         }
 
-        private Point[][] segPoints;
-
-        private int gridHeight = 80;
-        private int gridWidth = 48;
-        private int elementWidth = 10;
-        private float italicFactor = 0.0F;
-        private Color colorBackground = Color.DarkGray;
-        private Color colorDark = Color.DimGray;
-        private Color colorLight = Color.Red;
-
-
         /// <summary>
         /// Background color of the 7-segment display.
         /// </summary>
@@ -155,24 +175,6 @@ namespace DmitryBrant.CustomControls
         }
 
         /// <summary>
-        /// These are the various bit patterns that represent the characters
-        /// that can be displayed in the seven segments. Bits 0 through 6
-        /// correspond to each of the LEDs, from top to bottom!
-        /// </summary>
-        public enum ValuePattern
-        {
-            None = 0x0, Zero = 0x77, One = 0x24, Two = 0x5D, Three = 0x6D,
-            Four = 0x2E, Five = 0x6B, Six = 0x7B, Seven = 0x25,
-            Eight = 0x7F, Nine = 0x6F, A = 0x3F, B = 0x7A, C = 0x53,
-            D = 0x7C, E = 0x5B, F = 0x1B, G = 0x73, H = 0x3E,
-            J = 0x74, L = 0x52, N = 0x38, O = 0x78, P = 0x1F, Q = 0x2F, R = 0x18,
-            T = 0x5A, U = 0x76, Y = 0x6E,
-            Dash = 0x8, Equals = 0x48
-        }
-
-        private string theValue = null;
-
-        /// <summary>
         /// Character to be displayed on the seven segments. Supported characters
         /// are digits and most letters.
         /// </summary>
@@ -182,68 +184,63 @@ namespace DmitryBrant.CustomControls
             set
             {
                 customPattern = 0;
-                if (value != null)
+                theValue = value;
+                Invalidate();
+                if (value == null)
                 {
-                    //is it an integer?
-                    bool success = false;
-                    try
+                    return;
+                }
+                //is it an integer?
+                int tempValue;
+                if (int.TryParse(value, out tempValue))
+                {
+                    if (tempValue > 9) tempValue = 9; if (tempValue < 0) tempValue = 0;
+                    switch (tempValue)
                     {
-                        int tempValue = Convert.ToInt32(value);
-                        if (tempValue > 9) tempValue = 9; if (tempValue < 0) tempValue = 0;
-                        switch (tempValue)
-                        {
-                            case 0: customPattern = (int)ValuePattern.Zero; break;
-                            case 1: customPattern = (int)ValuePattern.One; break;
-                            case 2: customPattern = (int)ValuePattern.Two; break;
-                            case 3: customPattern = (int)ValuePattern.Three; break;
-                            case 4: customPattern = (int)ValuePattern.Four; break;
-                            case 5: customPattern = (int)ValuePattern.Five; break;
-                            case 6: customPattern = (int)ValuePattern.Six; break;
-                            case 7: customPattern = (int)ValuePattern.Seven; break;
-                            case 8: customPattern = (int)ValuePattern.Eight; break;
-                            case 9: customPattern = (int)ValuePattern.Nine; break;
-                        }
-                        success = true;
-                    }
-                    catch { }
-                    if (!success)
-                    {
-                        try
-                        {
-                            //is it a letter?
-                            string tempString = Convert.ToString(value);
-                            switch (tempString.ToLower()[0])
-                            {
-                                case 'a': customPattern = (int)ValuePattern.A; break;
-                                case 'b': customPattern = (int)ValuePattern.B; break;
-                                case 'c': customPattern = (int)ValuePattern.C; break;
-                                case 'd': customPattern = (int)ValuePattern.D; break;
-                                case 'e': customPattern = (int)ValuePattern.E; break;
-                                case 'f': customPattern = (int)ValuePattern.F; break;
-                                case 'g': customPattern = (int)ValuePattern.G; break;
-                                case 'h': customPattern = (int)ValuePattern.H; break;
-                                case 'j': customPattern = (int)ValuePattern.J; break;
-                                case 'l': customPattern = (int)ValuePattern.L; break;
-                                case 'n': customPattern = (int)ValuePattern.N; break;
-                                case 'o': customPattern = (int)ValuePattern.O; break;
-                                case 'p': customPattern = (int)ValuePattern.P; break;
-                                case 'q': customPattern = (int)ValuePattern.Q; break;
-                                case 'r': customPattern = (int)ValuePattern.R; break;
-                                case 't': customPattern = (int)ValuePattern.T; break;
-                                case 'u': customPattern = (int)ValuePattern.U; break;
-                                case 'y': customPattern = (int)ValuePattern.Y; break;
-                                case '-': customPattern = (int)ValuePattern.Dash; break;
-                                case '=': customPattern = (int)ValuePattern.Equals; break;
-                            }
-                        }
-                        catch { }
+                        case 0: customPattern = (int)ValuePattern.Zero; break;
+                        case 1: customPattern = (int)ValuePattern.One; break;
+                        case 2: customPattern = (int)ValuePattern.Two; break;
+                        case 3: customPattern = (int)ValuePattern.Three; break;
+                        case 4: customPattern = (int)ValuePattern.Four; break;
+                        case 5: customPattern = (int)ValuePattern.Five; break;
+                        case 6: customPattern = (int)ValuePattern.Six; break;
+                        case 7: customPattern = (int)ValuePattern.Seven; break;
+                        case 8: customPattern = (int)ValuePattern.Eight; break;
+                        case 9: customPattern = (int)ValuePattern.Nine; break;
                     }
                 }
-                theValue = value; Invalidate();
+                else
+                {
+                    //is it a letter?
+                    switch (value.ToLower()[0])
+                    {
+                        case 'a': customPattern = (int)ValuePattern.A; break;
+                        case 'b': customPattern = (int)ValuePattern.B; break;
+                        case 'c': customPattern = (int)ValuePattern.C; break;
+                        case 'd': customPattern = (int)ValuePattern.D; break;
+                        case 'e': customPattern = (int)ValuePattern.E; break;
+                        case 'f': customPattern = (int)ValuePattern.F; break;
+                        case 'g': customPattern = (int)ValuePattern.G; break;
+                        case 'h': customPattern = (int)ValuePattern.H; break;
+                        case 'i': customPattern = (int)ValuePattern.One; break;
+                        case 'j': customPattern = (int)ValuePattern.J; break;
+                        case 'l': customPattern = (int)ValuePattern.L; break;
+                        case 'n': customPattern = (int)ValuePattern.N; break;
+                        case 'o': customPattern = (int)ValuePattern.O; break;
+                        case 'p': customPattern = (int)ValuePattern.P; break;
+                        case 'q': customPattern = (int)ValuePattern.Q; break;
+                        case 'r': customPattern = (int)ValuePattern.R; break;
+                        case 's': customPattern = (int)ValuePattern.Five; break;
+                        case 't': customPattern = (int)ValuePattern.T; break;
+                        case 'u': customPattern = (int)ValuePattern.U; break;
+                        case 'y': customPattern = (int)ValuePattern.Y; break;
+                        case '-': customPattern = (int)ValuePattern.Dash; break;
+                        case '=': customPattern = (int)ValuePattern.Equals; break;
+                    }
+                }
             }
         }
 
-        private int customPattern = 0;
         /// <summary>
         /// Set a custom bit pattern to be displayed on the seven segments. This is an
         /// integer value where bits 0 through 6 correspond to each respective LED
@@ -251,7 +248,6 @@ namespace DmitryBrant.CustomControls
         /// </summary>
         public int CustomPattern { get { return customPattern; } set { customPattern = value; Invalidate(); } }
 
-        private bool showDot = true, dotOn = false;
         /// <summary>
         /// Specifies if the decimal point LED is displayed.
         /// </summary>
@@ -261,7 +257,6 @@ namespace DmitryBrant.CustomControls
         /// </summary>
         public bool DecimalOn { get { return dotOn; } set { dotOn = value; Invalidate(); } }
 
-        private bool showColon = false, colonOn = false;
         /// <summary>
         /// Specifies if the colon LEDs are displayed.
         /// </summary>
@@ -270,8 +265,7 @@ namespace DmitryBrant.CustomControls
         /// Specifies if the colon LEDs are active.
         /// </summary>
         public bool ColonOn { get { return colonOn; } set { colonOn = value; Invalidate(); } }
-
-
+        
         private void SevenSegment_Paint(object sender, PaintEventArgs e)
         {
             int useValue = customPattern;
@@ -321,7 +315,6 @@ namespace DmitryBrant.CustomControls
 
             e.Graphics.EndContainer(containerState);
         }
-
-
+        
     }
 }
