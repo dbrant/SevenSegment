@@ -46,8 +46,8 @@ namespace DmitryBrant.CustomControls
         {
             SuspendLayout();
             Name = "SevenSegmentArray";
-            Size = new System.Drawing.Size(100, 25);
-            Resize += new System.EventHandler(this.SevenSegmentArray_Resize);
+            Size = new Size(100, 25);
+            Resize += new EventHandler(SevenSegmentArray_Resize);
             ResumeLayout(false);
 
             TabStop = false;
@@ -74,14 +74,14 @@ namespace DmitryBrant.CustomControls
                 segments[i] = new SevenSegment();
                 segments[i].Parent = this;
                 segments[i].Top = 0;
-                segments[i].Height = this.Height;
+                segments[i].Height = Height;
                 segments[i].Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
                 segments[i].Visible = true;
             }
 
             ResizeSegments();
             UpdateSegments();
-            this.Value = theValue;
+            Value = theValue;
         }
 
         /// <summary>
@@ -90,10 +90,10 @@ namespace DmitryBrant.CustomControls
         /// </summary>
         private void ResizeSegments()
         {
-            int segWidth = this.Width / segments.Length;
+            int segWidth = Width / segments.Length;
             for (int i = 0; i < segments.Length; i++)
             {
-                segments[i].Left = this.Width * (segments.Length - 1 - i) / segments.Length;
+                segments[i].Left = Width * (segments.Length - 1 - i) / segments.Length;
                 segments[i].Width = segWidth;
             }
         }

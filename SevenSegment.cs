@@ -60,16 +60,16 @@ namespace DmitryBrant.CustomControls
 
         public SevenSegment()
         {
-            this.SuspendLayout();
-            this.Name = "SevenSegment";
-            this.Size = new System.Drawing.Size(32, 64);
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.SevenSegment_Paint);
-            this.Resize += new System.EventHandler(this.SevenSegment_Resize);
-            this.ResumeLayout(false);
+            SuspendLayout();
+            Name = "SevenSegment";
+            Size = new Size(32, 64);
+            Paint += new PaintEventHandler(SevenSegment_Paint);
+            Resize += new EventHandler(SevenSegment_Resize);
+            ResumeLayout(false);
 
-            this.TabStop = false;
-            this.Padding = new Padding(4, 4, 4, 4);
-            this.DoubleBuffered = true;
+            TabStop = false;
+            Padding = new Padding(4, 4, 4, 4);
+            DoubleBuffered = true;
 
             segPoints = new Point[7][];
             for (int i = 0; i < 7; i++) segPoints[i] = new Point[6];
@@ -165,8 +165,8 @@ namespace DmitryBrant.CustomControls
         /// </summary>
         public float ItalicFactor { get { return italicFactor; } set { italicFactor = value; Invalidate(); } }
 
-        private void SevenSegment_Resize(object sender, EventArgs e) { this.Invalidate(); }
-        protected override void OnPaddingChanged(EventArgs e) { base.OnPaddingChanged(e); this.Invalidate(); }
+        private void SevenSegment_Resize(object sender, EventArgs e) { Invalidate(); }
+        protected override void OnPaddingChanged(EventArgs e) { base.OnPaddingChanged(e); Invalidate(); }
 
         protected override void OnPaintBackground(PaintEventArgs e)
         {
@@ -186,7 +186,7 @@ namespace DmitryBrant.CustomControls
                 customPattern = 0;
                 theValue = value;
                 Invalidate();
-                if (value == null)
+                if (value == null || value.Length == 0)
                 {
                     return;
                 }
@@ -283,7 +283,7 @@ namespace DmitryBrant.CustomControls
             }else{
                 srcRect = new RectangleF(0.0F, 0.0F, gridWidth, gridHeight);
             }
-            RectangleF destRect = new RectangleF(Padding.Left, Padding.Top, this.Width - Padding.Left - Padding.Right, this.Height - Padding.Top - Padding.Bottom);
+            RectangleF destRect = new RectangleF(Padding.Left, Padding.Top, Width - Padding.Left - Padding.Right, Height - Padding.Top - Padding.Bottom);
             
             // Begin graphics container that remaps coordinates for our convenience
             GraphicsContainer containerState = e.Graphics.BeginContainer(destRect, srcRect, GraphicsUnit.Pixel);
