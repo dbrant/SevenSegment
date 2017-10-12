@@ -2,7 +2,7 @@
 
 A full-featured .NET seven-segment control for WinForms.
 
-Copyright 2009-2016 Dmitry Brant. All Rights Reserved.
+Copyright 2009-2017 Dmitry Brant. All Rights Reserved.
 
 me@dmitrybrant.com, http://dmitrybrant.com
 

@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("SevenSegTest")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Demo application for testing the SevenSegment control.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("SevenSegTest")]
-[assembly: AssemblyCopyright("Copyright © 2009-2014 Dmitry Brant")]
+[assembly: AssemblyCopyright("Copyright © 2009-2017 Dmitry Brant")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
