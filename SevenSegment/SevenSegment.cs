@@ -51,11 +51,11 @@ namespace DmitryBrant.CustomControls
         {
             None = 0x0, Zero = 0x77, One = 0x24, Two = 0x5D, Three = 0x6D,
             Four = 0x2E, Five = 0x6B, Six = 0x7B, Seven = 0x25,
-            Eight = 0x7F, Nine = 0x6F, A = 0x3F, B = 0x7A, C = 0x53,
-            D = 0x7C, E = 0x5B, F = 0x1B, G = 0x73, H = 0x3E,
-            J = 0x74, L = 0x52, N = 0x38, O = 0x78, P = 0x1F, Q = 0x2F, R = 0x18,
-            T = 0x5A, U = 0x76, Y = 0x6E,
-            Dash = 0x8, Equals = 0x48
+            Eight = 0x7F, Nine = 0x6F, A = 0x3F, B = 0x7A, C = 0x53, c = 0x58,
+            D = 0x7C, E = 0x5B, F = 0x1B, G = 0x73, H = 0x3E, h = 0x3A, i = 0x20,
+            J = 0x74, L = 0x52, N = 0x38, o = 0x78, P = 0x1F, Q = 0x2F, R = 0x18,
+            T = 0x5A, U = 0x76, u = 0x70, Y = 0x6E,
+            Dash = 0x8, Equals = 0x48, Degrees = 0xF
         }
 
         public SevenSegment()
@@ -212,30 +212,36 @@ namespace DmitryBrant.CustomControls
                 else
                 {
                     //is it a letter?
-                    switch (value.ToLower()[0])
+                    switch (value[0])
                     {
-                        case 'a': customPattern = (int)ValuePattern.A; break;
-                        case 'b': customPattern = (int)ValuePattern.B; break;
-                        case 'c': customPattern = (int)ValuePattern.C; break;
-                        case 'd': customPattern = (int)ValuePattern.D; break;
-                        case 'e': customPattern = (int)ValuePattern.E; break;
-                        case 'f': customPattern = (int)ValuePattern.F; break;
-                        case 'g': customPattern = (int)ValuePattern.G; break;
-                        case 'h': customPattern = (int)ValuePattern.H; break;
-                        case 'i': customPattern = (int)ValuePattern.One; break;
-                        case 'j': customPattern = (int)ValuePattern.J; break;
-                        case 'l': customPattern = (int)ValuePattern.L; break;
-                        case 'n': customPattern = (int)ValuePattern.N; break;
-                        case 'o': customPattern = (int)ValuePattern.O; break;
-                        case 'p': customPattern = (int)ValuePattern.P; break;
-                        case 'q': customPattern = (int)ValuePattern.Q; break;
-                        case 'r': customPattern = (int)ValuePattern.R; break;
-                        case 's': customPattern = (int)ValuePattern.Five; break;
-                        case 't': customPattern = (int)ValuePattern.T; break;
-                        case 'u': customPattern = (int)ValuePattern.U; break;
-                        case 'y': customPattern = (int)ValuePattern.Y; break;
+                        case 'A': case 'a': customPattern = (int)ValuePattern.A; break;
+                        case 'B': case 'b': customPattern = (int)ValuePattern.B; break;
+                        case 'C': customPattern = (int)ValuePattern.C; break;
+                        case 'c': customPattern = (int)ValuePattern.c; break;
+                        case 'D': case 'd': customPattern = (int)ValuePattern.D; break;
+                        case 'E': case 'e': customPattern = (int)ValuePattern.E; break;
+                        case 'F': case 'f': customPattern = (int)ValuePattern.F; break;
+                        case 'G': case 'g': customPattern = (int)ValuePattern.G; break;
+                        case 'H': customPattern = (int)ValuePattern.H; break;
+                        case 'h': customPattern = (int)ValuePattern.h; break;
+                        case 'I': customPattern = (int)ValuePattern.One; break;
+                        case 'i': customPattern = (int)ValuePattern.i; break;
+                        case 'J': case 'j': customPattern = (int)ValuePattern.J; break;
+                        case 'L': case 'l': customPattern = (int)ValuePattern.L; break;
+                        case 'N': case 'n': customPattern = (int)ValuePattern.N; break;
+                        case 'O': customPattern = (int)ValuePattern.Zero; break;
+                        case 'o': customPattern = (int)ValuePattern.o; break;
+                        case 'P': case 'p': customPattern = (int)ValuePattern.P; break;
+                        case 'Q': case 'q': customPattern = (int)ValuePattern.Q; break;
+                        case 'R': case 'r': customPattern = (int)ValuePattern.R; break;
+                        case 'S': case 's': customPattern = (int)ValuePattern.Five; break;
+                        case 'T': case 't': customPattern = (int)ValuePattern.T; break;
+                        case 'U': customPattern = (int)ValuePattern.U; break;
+                        case 'u': customPattern = (int)ValuePattern.u; break;
+                        case 'Y': case 'y': customPattern = (int)ValuePattern.Y; break;
                         case '-': customPattern = (int)ValuePattern.Dash; break;
                         case '=': customPattern = (int)ValuePattern.Equals; break;
+                        case '°': customPattern = (int)ValuePattern.Degrees; break;
                     }
                 }
             }
