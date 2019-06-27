@@ -6,7 +6,7 @@ using System.Drawing;
  * Seven-segment LED array control for .NET
  * (uses the original seven-segment LED control)
  * 
- * Copyright 2009-2017 Dmitry Brant. All Rights Reserved.
+ * Copyright 2009-2019 Dmitry Brant. All Rights Reserved.
  * me@dmitrybrant.com
  * http://dmitrybrant.com
  * 
