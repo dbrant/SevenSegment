@@ -56,7 +56,8 @@ namespace DmitryBrant.CustomControls
             J = 0x74, L = 0x52, N = 0x38, o = 0x78, P = 0x1F, Q = 0x2F, R = 0x18,
             T = 0x5A, U = 0x76, u = 0x70, Y = 0x6E,
             Dash = 0x8, Equals = 0x48, Degrees = 0xF,
-            Apostrophe = 0x2, Quote = 0x6, RBracket = 0x65
+            Apostrophe = 0x2, Quote = 0x6, RBracket = 0x65,
+            Underscore = 0x40, Identical = 0x49, Not = 0x28
         }
 
         public SevenSegment()
@@ -238,7 +239,7 @@ namespace DmitryBrant.CustomControls
                         case 'S': case 's': customPattern = (int)ValuePattern.Five; break;
                         case 'T': case 't': customPattern = (int)ValuePattern.T; break;
                         case 'U': customPattern = (int)ValuePattern.U; break;
-                        case 'u': customPattern = (int)ValuePattern.u; break;
+                        case 'u': case 'µ': case 'μ': customPattern = (int)ValuePattern.u; break;
                         case 'Y': case 'y': customPattern = (int)ValuePattern.Y; break;
                         case '-': customPattern = (int)ValuePattern.Dash; break;
                         case '=': customPattern = (int)ValuePattern.Equals; break;
@@ -247,6 +248,9 @@ namespace DmitryBrant.CustomControls
                         case '"': customPattern = (int)ValuePattern.Quote; break;
                         case '[': case '{': customPattern = (int)ValuePattern.C; break;
                         case ']': case '}': customPattern = (int)ValuePattern.RBracket; break;
+                        case '_': customPattern = (int)ValuePattern.Underscore; break;
+                        case '≡': customPattern = (int)ValuePattern.Identical; break;
+                        case '¬': customPattern = (int)ValuePattern.Not; break;
                     }
                 }
             }
