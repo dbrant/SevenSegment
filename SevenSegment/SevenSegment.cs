@@ -55,7 +55,8 @@ namespace DmitryBrant.CustomControls
             D = 0x7C, E = 0x5B, F = 0x1B, G = 0x73, H = 0x3E, h = 0x3A, i = 0x20,
             J = 0x74, L = 0x52, N = 0x38, o = 0x78, P = 0x1F, Q = 0x2F, R = 0x18,
             T = 0x5A, U = 0x76, u = 0x70, Y = 0x6E,
-            Dash = 0x8, Equals = 0x48, Degrees = 0xF
+            Dash = 0x8, Equals = 0x48, Degrees = 0xF,
+            Apostrophe = 0x2, Quote = 0x6, RBracket = 0x65
         }
 
         public SevenSegment()
@@ -242,6 +243,10 @@ namespace DmitryBrant.CustomControls
                         case '-': customPattern = (int)ValuePattern.Dash; break;
                         case '=': customPattern = (int)ValuePattern.Equals; break;
                         case '°': customPattern = (int)ValuePattern.Degrees; break;
+                        case '\'': customPattern = (int)ValuePattern.Apostrophe; break;
+                        case '"': customPattern = (int)ValuePattern.Quote; break;
+                        case '[': case '{': customPattern = (int)ValuePattern.C; break;
+                        case ']': case '}': customPattern = (int)ValuePattern.RBracket; break;
                     }
                 }
             }
