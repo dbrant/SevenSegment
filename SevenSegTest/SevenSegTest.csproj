@@ -14,9 +14,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="SevenSegment\SevenSegment.csproj" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Remove="SevenSegment\obj\Debug\net40\.NETFramework,Version=v4.0.AssemblyAttributes.cs" />
     <Compile Remove="SevenSegment\obj\Debug\net7.0-windows\.NETCoreApp,Version=v7.0.AssemblyAttributes.cs" />
     <Compile Remove="SevenSegment\obj\Release\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
@@ -25,5 +22,8 @@
     <Compile Remove="SevenSegment\Properties\AssemblyInfo.cs" />
     <Compile Remove="SevenSegment\SevenSegment.cs" />
     <Compile Remove="SevenSegment\SevenSegmentArray.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SevenSegment\SevenSegment.csproj" />
   </ItemGroup>
 </Project>
